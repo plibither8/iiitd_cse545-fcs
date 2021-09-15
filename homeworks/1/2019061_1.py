@@ -1,30 +1,48 @@
 # Mihir Chaturvedi
 # Roll number: 2019061
 
+import random
+
 # Convert string to leet speak
 def leet_speak(string):
     # Define leet_speak_dict
     leet_speak_dict = {
-        "a": "@",
-        "b": "8",
-        "e": "3",
-        "g": "6",
-        "i": "1",
-        "l": "1",
-        "o": "0",
-        "s": "5",
-        "t": "7",
-        "z": "2",
+        "a": ["@", "4"],
+        "b": ["8", "13"],
+        "c": ["(", "{"],
+        "d": ["|)", "|]"],
+        "e": ["3"],
+        "g": ["6"],
+        "h": ["#"],
+        "i": ["1", "!"],
+        "k": ["|<", "|{"],
+        "l": ["1", "|"],
+        "o": ["0"],
+        "s": ["5", "$"],
+        "t": ["7"],
+        "v": ["\\/", "\\/"],
+        "x": ["*"],
+        "z": ["2"],
+        "0": ["o"],
+        "1": ["l"],
+        "2": ["z"],
+        "3": ["e"],
+        "4": ["a"],
+        "5": ["s"],
+        "6": ["g"],
+        "7": ["t"],
+        "8": ["b"],
+        "9": ["g"],
     }
 
     leet_speak_string = ""
 
-    for i in range(len(string)):
-        lower_case_letter = string[i].lower()
+    for char in string:
+        lower_char = char.lower()
         leet_speak_string += (
-            leet_speak_dict[lower_case_letter]
-            if lower_case_letter in leet_speak_dict
-            else string[i]
+            random.choice(leet_speak_dict[lower_char] + [char])
+            if lower_char in leet_speak_dict
+            else char
         )
 
     return leet_speak_string
