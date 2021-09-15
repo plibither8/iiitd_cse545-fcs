@@ -6,9 +6,6 @@
 *.o
 *.out
 *.bin
-*.i
-!Makefile
-tests/*
-.p8sh_history
+__pycache__
 
 !LICENSE
