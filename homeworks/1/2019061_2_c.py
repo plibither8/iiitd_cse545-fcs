@@ -14,14 +14,14 @@ def main():
         otp_a.main(False)
     end = time.time()
     elapsed = end - start
-    print("Time elapsed: " + str(elapsed))
+    print("A. Time elapsed: " + str(elapsed))
 
     start = time.time()
     for i in range(100):
         otp_b.main(False)
     end = time.time()
     elapsed = end - start
-    print("Time elapsed: " + str(elapsed))
+    print("B. Time elapsed: " + str(elapsed))
 
     random_number = otp_a.get_random_number()
     start = time.time()
@@ -29,7 +29,7 @@ def main():
         print(otp_a.get_otp(random_number))
     end = time.time()
     elapsed = end - start
-    print("Time elapsed: " + str(elapsed))
+    print("C. Time elapsed: " + str(elapsed))
 
 
 if __name__ == "__main__":

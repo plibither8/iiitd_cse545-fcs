@@ -5,7 +5,9 @@ import random
 
 
 def get_random_number():
-    return str(random.randint(1, 10 ** 1023))
+    start = 10 ** 2022
+    end = (10 ** 2023) - 1
+    return str(random.randint(start, end))
 
 
 def get_otp(seed):

@@ -8,19 +8,16 @@ def leet_speak(string):
     # Define leet_speak_dict
     leet_speak_dict = {
         "a": ["@", "4"],
-        "b": ["8", "13"],
+        "b": ["8"],
         "c": ["(", "{"],
-        "d": ["|)", "|]"],
         "e": ["3"],
         "g": ["6"],
         "h": ["#"],
         "i": ["1", "!"],
-        "k": ["|<", "|{"],
         "l": ["1", "|"],
         "o": ["0"],
         "s": ["5", "$"],
         "t": ["7"],
-        "v": ["\\/", "\\/"],
         "x": ["*"],
         "z": ["2"],
         "0": ["o"],
@@ -42,7 +39,9 @@ def leet_speak(string):
         leet_speak_string += (
             random.choice(leet_speak_dict[lower_char] + [char])
             if lower_char in leet_speak_dict
-            else char
+            else lower_char
+            if random.randint(0, 1) == 0
+            else char.upper()
         )
 
     return leet_speak_string
@@ -54,6 +53,11 @@ def main():
     # Check if string is longer than 100 characters
     if len(input_string) > 100:
         print("String is too long")
+        return
+
+    # Check if string has space
+    if " " in input_string:
+        print("String cannot have a space character")
         return
 
     leet_string = leet_speak(input_string)

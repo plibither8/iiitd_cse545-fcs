@@ -2,11 +2,15 @@
 # Roll number: 2019061
 
 from gmpy2 import mpz_random, random_state
+import time
 import random
 
 
 def get_random_number():
-    return str(mpz_random(random_state(random.randint(0, 1023)), 10 ** 1023))
+    random_number = ""
+    while len(random_number) < 1023:
+        random_number = str(mpz_random(random_state(time.time_ns()), 10 ** 1023))
+    return random_number
 
 
 def get_otp(seed):

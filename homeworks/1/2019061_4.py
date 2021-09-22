@@ -2,30 +2,68 @@
 # Roll number: 2019061
 
 import gmpy2
-import random
+import time
+import sys
 
 
 def encrypt(m, p, q):
-    n = p * q
-    phi = (p - 1) * (q - 1)
-    e = random.randint(2, phi - 1)
-    while gmpy2.gcd(e, phi) != 1:
-        e = random.randint(2, phi - 1)
+    if p == q:
+        print("p and q should be different")
+        exit(1)
+
+    if p > q:
+        print("p should be smaller than q")
+        exit(1)
+
+    if not gmpy2.is_prime(p) or not gmpy2.is_prime(q):
+        print("p and q should be prime")
+        exit(1)
+
+    n = gmpy2.mul(p, q)
+    phi = gmpy2.mul(p - 1, q - 1)
+
+    rs = gmpy2.random_state(time.time_ns())
+    e = gmpy2.mpz_random(rs, phi)
+    while gmpy2.gcd(e, phi) != 1 or e < 2:
+        e = gmpy2.mpz_random(rs, phi)
     c = gmpy2.powmod(m, e, n)
     d = gmpy2.invert(e, phi)
 
-    print("c = ", c)
-    print("e = ", e)
-    print("d = ", d)
-    print("n = ", n)
+    print("c =", c)
+    print("e =", e)
+    print("d =", d)
+    print("n =", n)
 
     return (c, d, n)
 
 
 def decrypt(c, d, n):
     m = gmpy2.powmod(c, d, n)
-    print("m = ", m)
+    print("m =", m)
     return m
 
 
-# decrypt(*encrypt(123123, 39461, 44293))
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Specify 'encrypt' or 'decrypt'")
+        exit(1)
+
+    if sys.argv[1] == "encrypt":
+        m = int(input("m = "))
+        p = int(input("p = "))
+        q = int(input("q = "))
+        print()
+
+        encrypt(m, p, q)
+        exit()
+
+    if sys.argv[1] == "decrypt":
+        c = int(input("c = "))
+        d = int(input("d = "))
+        n = int(input("n = "))
+        print()
+
+        decrypt(c, d, n)
+        exit()
+
+    print("Specify 'encrypt' or 'decrypt'")
