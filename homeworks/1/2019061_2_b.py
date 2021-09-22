@@ -7,10 +7,10 @@ import random
 
 
 def get_random_number():
-    random_number = ""
-    while len(random_number) < 1023:
-        random_number = str(mpz_random(random_state(time.time_ns()), 10 ** 1023))
-    return random_number
+    random_number = (10 ** 1022) + mpz_random(
+        random_state(time.time_ns()), (10 ** 1023) - (10 ** 1022) - 1
+    )
+    return str(random_number)
 
 
 def get_otp(seed):

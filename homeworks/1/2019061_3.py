@@ -31,3 +31,14 @@ def print_shared_secret_bob(A, b, p):
     S = gmpy2.powmod(A, b, p)
     print("S =", S)
     return S
+
+
+if __name__ == "__main__":
+    p = gmpy2.mpz(input("p = "))
+    g = gmpy2.mpz(input("g = "))
+
+    (B, b) = bob_sends_alice(p, g)
+    (A, a) = alice_sends_bob(p, g)
+
+    print_shared_secret_alice(B, a, p)
+    print_shared_secret_bob(A, b, p)

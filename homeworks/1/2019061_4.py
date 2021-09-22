@@ -49,18 +49,18 @@ if __name__ == "__main__":
         exit(1)
 
     if sys.argv[1] == "encrypt":
-        m = int(input("m = "))
-        p = int(input("p = "))
-        q = int(input("q = "))
+        m = gmpy2.mpz(input("m = "))
+        p = gmpy2.mpz(input("p = "))
+        q = gmpy2.mpz(input("q = "))
         print()
 
         encrypt(m, p, q)
         exit()
 
     if sys.argv[1] == "decrypt":
-        c = int(input("c = "))
-        d = int(input("d = "))
-        n = int(input("n = "))
+        c = gmpy2.mpz(input("c = "))
+        d = gmpy2.mpz(input("d = "))
+        n = gmpy2.mpz(input("n = "))
         print()
 
         decrypt(c, d, n)
