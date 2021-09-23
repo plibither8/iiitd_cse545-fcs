@@ -2,7 +2,6 @@
 # Roll number: 2019061
 
 import gmpy2
-import time
 import sys
 
 
@@ -21,11 +20,7 @@ def encrypt(m, p, q):
 
     n = gmpy2.mul(p, q)
     phi = gmpy2.mul(p - 1, q - 1)
-
-    rs = gmpy2.random_state(time.time_ns())
-    e = gmpy2.mpz_random(rs, phi)
-    while gmpy2.gcd(e, phi) != 1 or e < 2:
-        e = gmpy2.mpz_random(rs, phi)
+    e = gmpy2.next_prime(q)
     c = gmpy2.powmod(m, e, n)
     d = gmpy2.invert(e, phi)
 
