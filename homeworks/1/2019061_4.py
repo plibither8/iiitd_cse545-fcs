@@ -18,9 +18,10 @@ def encrypt(m, p, q):
         print("p and q should be prime")
         exit(1)
 
+    fermat_primes = [(2 ** (2 ** x)) + 1 for x in range(4, -1, -1)]
     n = gmpy2.mul(p, q)
     phi = gmpy2.mul(p - 1, q - 1)
-    e = gmpy2.next_prime(q)
+    e = next(x for x in fermat_primes if x < phi)
     c = gmpy2.powmod(m, e, n)
     d = gmpy2.invert(e, phi)
 
