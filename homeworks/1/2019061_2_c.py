@@ -25,11 +25,17 @@ def main():
 
     random_number = otp_a.get_random_number()
     start = time.time()
+    otps = []
     for i in range(100):
-        print(otp_a.get_otp(random_number))
+        otp = otp_a.get_otp(random_number)
+        while otp in otps:
+            otp = otp_a.get_otp(random_number)
+        otps.append(otp)
     end = time.time()
     elapsed = end - start
     print("C. Time elapsed: " + str(elapsed))
+    for otp in otps:
+        print(otp)
 
 
 if __name__ == "__main__":

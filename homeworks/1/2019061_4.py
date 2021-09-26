@@ -21,7 +21,7 @@ def encrypt(m, p, q):
     fermat_primes = [(2 ** (2 ** x)) + 1 for x in range(4, -1, -1)]
     n = gmpy2.mul(p, q)
     phi = gmpy2.mul(p - 1, q - 1)
-    e = next(x for x in fermat_primes if x < phi)
+    e = next(x for x in fermat_primes if x < phi and gmpy2.gcd(x, phi) == 1)
     c = gmpy2.powmod(m, e, n)
     d = gmpy2.invert(e, phi)
 
