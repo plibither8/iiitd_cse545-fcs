@@ -23,6 +23,7 @@ def main(print_numbers=True):
     if print_numbers:
         print(random_number)
         print(otp)
+    return otp
 
 
 if __name__ == "__main__":

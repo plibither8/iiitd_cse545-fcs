@@ -9,16 +9,26 @@ otp_b = importlib.import_module("2019061_2_b")
 
 
 def main():
+    otps = []
     start = time.time()
     for i in range(100):
         otp_a.main(False)
+        otp = otp_a.main(False)
+        while otp in otps:
+            otp = otp_a.main(False)
+        otps.append(otp)
     end = time.time()
     elapsed = end - start
     print("A. Time elapsed: " + str(elapsed))
 
+    otps = []
     start = time.time()
     for i in range(100):
         otp_b.main(False)
+        otp = otp_b.main(False)
+        while otp in otps:
+            otp = otp_b.main(False)
+        otps.append(otp)
     end = time.time()
     elapsed = end - start
     print("B. Time elapsed: " + str(elapsed))
